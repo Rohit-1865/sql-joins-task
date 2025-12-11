@@ -11,9 +11,6 @@ CREATE TABLE employees (
   emp_name TEXT NOT NULL,
   dept_id INTEGER REFERENCES departments(dept_id)
 );
-
-
-
 INSERT INTO departments (dept_id, dept_name) VALUES
   (1, 'Engineering'),
   (2, 'HR'),
@@ -22,11 +19,11 @@ INSERT INTO departments (dept_id, dept_name) VALUES
   (5, 'Legal');  
 
 INSERT INTO employees (emp_id, emp_name, dept_id) VALUES
-  (101, 'Alice',   1),
-  (102, 'Bob',     2),
-  (103, 'Charlie', NULL), 
-  (104, 'Diana',   3),
-  (105, 'Eve',     4); 
+  (101, 'Abhii',   1),
+  (102, 'Tanuu',     2),
+  (103, 'Soham', NULL), 
+  (104, 'Swandya',   3),
+  (105, 'Ajit',     4); 
 ---------------------------------------------------------
 -- 1) INNER JOIN
 ---------------------------------------------------------
@@ -65,4 +62,5 @@ SELECT e.emp_id, e.emp_name, e.dept_id, d.dept_name
 FROM employees e
 FULL OUTER JOIN departments d
     ON e.dept_id = d.dept_id
+
 ORDER BY COALESCE(e.dept_id, d.dept_id), e.emp_id;
