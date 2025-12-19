@@ -1,5 +1,5 @@
-----I have created two tables named as employees and departement.
-
+----I have created two tables named as employees and departement. 
+-- In this dept_id is common between both tables
 DROP TABLE IF EXISTS employees CASCADE;
 DROP TABLE IF EXISTS departments CASCADE;
 
@@ -30,24 +30,24 @@ INSERT INTO employees (emp_id, emp_name, dept_id) VALUES
 -- 1) INNER JOIN
 -- Shows only rows that have matching valuesin both table like, where dept_id matches in both tables 
 SELECT e.emp_id, e.emp_name, e.dept_id, d.dept_name
-FROM employees e
-INNER JOIN departments d
+FROM employees as e
+INNER JOIN departments  as d
     ON e.dept_id = d.dept_id
 ORDER BY e.emp_id;
 
 -- 2) LEFT JOIN
 -- Shows all employees even if department is missing
 SELECT e.emp_id, e.emp_name, e.dept_id, d.dept_name
-FROM employees e
-LEFT JOIN departments d
+FROM employees  as e
+LEFT JOIN departments as d
     ON e.dept_id = d.dept_id
 ORDER BY e.emp_id;
 
 -- 3) RIGHT JOIN
 -- Shows all departments even if they have no employees
 SELECT e.emp_id, e.emp_name, d.dept_id, d.dept_name
-FROM employees e
-RIGHT JOIN departments d
+FROM employees  as e
+RIGHT JOIN departments  as d
     ON e.dept_id = d.dept_id
 ORDER BY d.dept_id;
 
@@ -55,9 +55,10 @@ ORDER BY d.dept_id;
 -- 4) FULL OUTER JOIN
 -- Shows all employees + all departments
 SELECT e.emp_id, e.emp_name, e.dept_id, d.dept_name
-FROM employees e
-FULL OUTER JOIN departments d
+FROM employees  as e
+FULL OUTER JOIN departments as d
     ON e.dept_id = d.dept_id
 ORDER BY COALESCE(e.dept_id, d.dept_id), e.emp_id;
+
 
 
